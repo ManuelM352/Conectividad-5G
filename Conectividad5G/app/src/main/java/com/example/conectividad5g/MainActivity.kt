@@ -51,16 +51,13 @@ class MainActivity : ComponentActivity() {
             } else {
                 // Permiso denegado, mostrar mensaje de que la aplicación no puede funcionar sin el permiso
                 Toast.makeText(this, "La aplicación no puede funcionar sin el permiso", Toast.LENGTH_SHORT).show()
-                // O cerrar la aplicación
                 finish()
             }
         }
     }
 
     private fun initAppLogic() {
-        // Iniciar la lógica de la aplicación aquí, por ejemplo, mostrar la pantalla de inicio
         setContent {
-            // Aquí deberías mostrar tu composición principal
             ConnectivityScreen()
         }
     }

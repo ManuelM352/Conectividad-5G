@@ -2,7 +2,9 @@ package com.example.conectividad5g
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,6 +29,14 @@ fun ConnectivityScreen() {
         mutableStateOf(connectivityViewModel.is5GConnected(context))
     }
 
+    val networkUsage by remember {
+        mutableStateOf(connectivityViewModel.getNetworkUsage())
+    }
+
+    val estimatedBandwidth by remember {
+        mutableStateOf(connectivityViewModel.getEstimatedBandwidth(context))
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +47,21 @@ fun ConnectivityScreen() {
         Text(
             text = if (is5GConnected) "Conectado a 5G" else "No conectado a 5G",
             color = if (is5GConnected) Color.Green else Color.Red,
-            style = MaterialTheme.typography.labelLarge
+            style = MaterialTheme.typography.bodyMedium
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Uso de red: $networkUsage bytes",
+            style = MaterialTheme.typography.bodyLarge
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = "Ancho de banda estimado: $estimatedBandwidth bytes/s",
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
